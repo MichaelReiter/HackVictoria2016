@@ -3,7 +3,12 @@
   height: 100%;
 }
 
-.icon {
+.icon.right {
   margin-right: 5px;
   float: right;
+}
+
+.icon.left {
+  margin-left: 5px;
+  float: left;
 }
