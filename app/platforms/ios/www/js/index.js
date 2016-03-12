@@ -27,16 +27,18 @@ var app = {
     receivedElement.setAttribute('style', 'display:block;');
 
     console.log('Received Event: ' + id);
+  },
+
+  initMap: function() {
+    var mapDiv = document.getElementById('map');
+    var map = new google.maps.Map(mapDiv, {
+      center: {lat: 48.45, lng: -123.35},
+      zoom: 12,
+      streetViewControl: false,
+      mapTypeControl: false
+    });
   }
+
 };
 
 app.initialize();
-
-function initMap() {
-  console.log("called");
-  var mapDiv = document.getElementById('map');
-  var map = new google.maps.Map(mapDiv, {
-    center: {lat: 44.540, lng: -78.546},
-    zoom: 8
-  });
-}
