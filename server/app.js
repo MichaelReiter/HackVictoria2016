@@ -27,11 +27,11 @@ app.get('/test_end', function (req, res) {
 
 app.post('/location', function(req, res) {
     var data = req.body;
-    console.log('data');
+    console.log(data);
     io.emit('busMetrics', data);
+    res.sendStatus(200);
 });
 
-
-app.listen(3000, function () {
-  console.log('Bus app listening on port 3000!');
-});
+httpServer.listen(3000, function() {
+    console.log('listening on 3000');
+})

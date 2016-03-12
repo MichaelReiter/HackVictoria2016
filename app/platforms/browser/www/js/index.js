@@ -1,7 +1,7 @@
 var socket = io.connect('http://localhost:3000');
 
 socket.on('busMetrics', function(data) {
-    console.log('data');
+    console.log(data);
 });
 
 var app = {
@@ -44,9 +44,10 @@ var app = {
       mapTypeControl: false
     });
   }
-
 };
 
-
-
 app.initialize();
+
+$(document).ready(function() {
+  setTimeout(function(){ app.initMap(); }, 200);
+});
