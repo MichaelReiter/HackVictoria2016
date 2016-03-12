@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
@@ -24,19 +23,21 @@
     <!-- Include the compiled Ratchet JS -->
     <script src="js/ratchet.js"></script>
   </head>
-  <body>
 
+  <body>
     <!-- Make sure all your bars are the first things in your <body> -->
     <header class="bar bar-nav">
-      <a class="icon left ion-ios-list-outline"></a>
+      <a href="list.html" data-transition="slide-out" class="icon left ion-ios-list-outline"></a>
       <h1 class="title">OpenBus</h1> 
       <a class="icon right ion-android-bus"></a>
     </header>
 
-    <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
+    <!-- Wrap all non-bar HTML in the .content div -->
     <div class="content">
       <div id="map"></div>
     </div>
+
+    <script type="text/javascript" src="js/jquery-2.2.1.min.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?callback=app.initMap" async defer></script>
