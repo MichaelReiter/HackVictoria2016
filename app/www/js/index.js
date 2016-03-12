@@ -44,9 +44,10 @@ var app = {
       mapTypeControl: false
     });
   }
-
 };
 
-
-
 app.initialize();
+
+$(document).ready(function() {
+  setTimeout(function(){ app.initMap(); }, 200);
+});

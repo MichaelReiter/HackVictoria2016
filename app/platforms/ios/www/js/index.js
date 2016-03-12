@@ -30,6 +30,7 @@ var app = {
   },
 
   initMap: function() {
+    console.log("initMap called");
     var mapDiv = document.getElementById('map');
     var map = new google.maps.Map(mapDiv, {
       center: {lat: 48.45, lng: -123.35},
@@ -38,7 +39,16 @@ var app = {
       mapTypeControl: false
     });
   }
-
 };
 
 app.initialize();
+
+$(document).ready(function() {
+
+});
+
+$("#back-button").click(function() {
+  alert("Handler for .click() called.");
+});
+
+// navigator.geolocation.getCurrentPosition(geolocationSuccess, [geolocationError], [geolocationOptions]);
