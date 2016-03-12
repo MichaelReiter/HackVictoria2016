@@ -32,8 +32,10 @@ var app = {
   initMap: function() {
     var mapDiv = document.getElementById('map');
     var map = new google.maps.Map(mapDiv, {
-      center: {lat: 48.4901450, lng: -123.3453936},
-      zoom: 12
+      center: {lat: 48.45, lng: -123.35},
+      zoom: 12,
+      streetViewControl: false,
+      mapTypeControl: false
     });
   }
 
