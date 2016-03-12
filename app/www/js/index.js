@@ -39,6 +39,17 @@ var app = {
       streetViewControl: false,
       mapTypeControl: false
     });
+  },
+
+  populateBusList: function(busList) {
+    for (var bus in busList) {
+      console.log(busList[bus]);
+      var listElement = document.createElement('li');
+      listElement.className = 'table-view-cell';
+      document.getElementsByClassName('table-view')[0].appendChild(listElement);
+      busNumber = document.createTextNode(busList[bus].number);
+      listElement.appendChild(busNumber);
+    }
   }
 };
 
