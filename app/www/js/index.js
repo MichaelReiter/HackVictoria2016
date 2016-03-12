@@ -1,4 +1,8 @@
-var socket = io.connect(window.location.href);
+var socket = io.connect('http://localhost:3000');
+
+socket.on('busMetrics', function(data) {
+    console.log('data');
+});
 
 var app = {
   // Application Constructor

@@ -1,4 +1,8 @@
+var socket = io.connect('http://localhost:3000');
 
+socket.on('busMetrics', function(data) {
+    console.log('data');
+});
 
 var app = {
   // Application Constructor
@@ -32,7 +36,6 @@ var app = {
   },
 
   initMap: function() {
-    console.log("map initialized");
     var mapDiv = document.getElementById('map');
     var map = new google.maps.Map(mapDiv, {
       center: {lat: 48.45, lng: -123.35},
@@ -41,20 +44,9 @@ var app = {
       mapTypeControl: false
     });
   }
+
 };
 
-<<<<<<< HEAD
 
 
 app.initialize();
-=======
-app.initialize();
-
-$(document).ready(function() {
-  console.log("jquery init");
-});
-
-$("#back-button").click(function() {
-  alert("Handler for .click() called.");
-});
->>>>>>> 652a89f8bdfcd125847b53e37037bc3208032ac2

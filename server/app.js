@@ -2,9 +2,10 @@ var express = require('express');
 var path = require('path');
 var socketio = require('socket.io');
 var http = require('http');
+var bodyParser = require('body-parser');
 
 var app = express();
-var httpServer = http.server(app);
+var httpServer = http.Server(app);
 var io = socketio(httpServer);
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -26,6 +27,7 @@ app.get('/test_end', function (req, res) {
 
 app.post('/location', function(req, res) {
     var data = req.body;
+    console.log('data');
     io.emit('busMetrics', data);
 });
 
