@@ -12,6 +12,6 @@ An app that leverages the Google Maps API and crowdsourced transit data to help 
 - JavaScript
 
 ## Team Members
-Michael Reiter
-Erik Reppel
-Clement Emmanuel
+- Michael Reiter
+- Erik Reppel
+- Clement Emmanuel
