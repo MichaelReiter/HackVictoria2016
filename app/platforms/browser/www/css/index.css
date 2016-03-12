@@ -1,0 +1,14 @@
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+.icon.right {
+  margin-right: 5px;
+  float: right;
+}
+
+.icon.left {
+  margin-left: 5px;
+  float: left;
+}
