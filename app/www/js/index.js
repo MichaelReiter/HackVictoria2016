@@ -1,3 +1,5 @@
+
+
 var app = {
   // Application Constructor
   initialize: function() {
@@ -45,5 +47,3 @@ app.initialize();
 $(document).ready(function() {
   setTimeout(function(){ app.initMap(); }, 200);
 });
-
-// navigator.geolocation.getCurrentPosition(geolocationSuccess, [geolocationError], [geolocationOptions]);
