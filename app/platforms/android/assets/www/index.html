@@ -23,23 +23,36 @@
     <!-- Include the compiled Ratchet JS -->
     <script src="js/ratchet.js"></script>
   </head>
-
   <body>
+
     <!-- Make sure all your bars are the first things in your <body> -->
     <header class="bar bar-nav">
       <a href="list.html" data-transition="slide-out" class="icon left ion-ios-list-outline"></a>
-      <h1 class="title">OpenBus</h1> 
-      <a class="icon right ion-android-bus"></a>
+      <h1 class="title">OpenBus</h1>
+      <a href="onbus.html" data-transition="slide-in" class="icon right ion-android-bus"></a>
     </header>
 
-    <!-- Wrap all non-bar HTML in the .content div -->
+    <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
     <div class="content">
       <div id="map"></div>
+      <script>
+        setTimeout(function() {console.log("something"); initMap();}, 200);
+      </script>
     </div>
-
+    <script src="https://maps.googleapis.com/maps/api/js" async defer></script>
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
     <script type="text/javascript" src="js/jquery-2.2.1.min.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js" async defer></script>
+
+    <script>
+      window.addEventListener('push', function() {
+        var scriptsList = document.querySelectorAll('script');
+        for (var i = 0; i < scriptsList.length; i++) {
+          eval(scriptsList[i].innerHTML);
+        }
+      });
+    </script>
+
   </body>
 </html>
