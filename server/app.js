@@ -89,7 +89,7 @@ io.on('connection', function(socket) {
 });
 
 app.get('/', function(req, res) {
-  
+  console.log(pathStr);
   res.sendFile(
     path.join(pathStr, 'index.html')
   );
