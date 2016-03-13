@@ -1,5 +1,6 @@
 var serverRoot = "http://localhost:3000";
 var socket = io.connect(serverRoot);
+var geolocation = {};
 
 socket.on('busMetrics', function(data) {
   console.log(data);
@@ -47,7 +48,6 @@ var app = {
   },
 
   populateBusList: function(busList) {
-    console.log("populateBusList called");
     for (var bus in busList) {
       var listElement = document.createElement('li');
       listElement.className = 'table-view-cell';
@@ -67,23 +67,22 @@ var app = {
     }
   },
 
-  getLocation: function() {
+  sendPost: function(event) {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.showPosition);
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var geolocation = {};
+        geolocation.lat = position.coords.latitude;
+        geolocation.lng = position.coords.longitude;
+        geolocation.number = event.target.text.split(" ")[0];
+
+        $.post(serverRoot + "/location", geolocation)
+          .done(function(data) {
+            alert("Posted: " + data);
+          });
+      });
     } else {
       console.log("Geolocation is not supported by this browser.");
     }
-  },
-
-  showPosition: function(position) {
-    console.log("Latitude: " + position.coords.latitude + "\nLongitude: " + position.coords.longitude);
-  },
-
-  sendPost: function(event) {
-    $.post(serverRoot + "/location", { number: event.target.text.split(" ")[0], lat: 1, lng: 1 })
-      .done(function(data) {
-        alert("Posted: " + data);
-      });
   }
 };
 
