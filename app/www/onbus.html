@@ -37,12 +37,18 @@
         <ul class="table-view">
         </ul>
       </div>
+      <script>
+        app.populateBusList(busList);
+      </script>
     </div>
     <script type="text/javascript" src="js/jquery-2.2.1.min.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script>
-      app.populateBusList([{number: 11},{number: 11},{number: 11},{number: 11}]);
+      // $(document).ready(function() {
+      //   console.log("on bus loaded");
+      //   setTimeout(function() {app.populateBusList(busList);}, 200);
+      // });
     </script>
   </body>
 </html>

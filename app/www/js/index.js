@@ -116,4 +116,4 @@ var busList = [
   { number: "83", route: "Royal Oak Exch/Sidney", hasMetric: false },
   { number: "85", route: "North Saanich", hasMetric: false },
   { number: "88", route: "Airport/Sidney", hasMetric: false }
-]
+];
