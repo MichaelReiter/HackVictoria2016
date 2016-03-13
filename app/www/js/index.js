@@ -46,16 +46,40 @@ var app = {
   },
 
   populateBusList: function(busList) {
+    console.log("populateBusList called");
     for (var bus in busList) {
       var listElement = document.createElement('li');
       listElement.className = 'table-view-cell';
       document.getElementsByClassName('table-view')[0].appendChild(listElement);
+
       var anchor = document.createElement('a');
       anchor.className = 'navigate-right';
+      anchor.onclick = 'sendPost()';
       listElement.appendChild(anchor);
-      var busNumber = document.createTextNode(busList[bus].number);
-      anchor.appendChild(busNumber);
+
+      var busNameDiv = document.createElement('div');
+      busNameDiv.className = 'bus-text';
+      anchor.appendChild(busNameDiv);
+
+      var busNumber = document.createTextNode(busList[bus].number + " " + busList[bus].route);
+      busNameDiv.appendChild(busNumber);
     }
+  },
+
+  getLocation: function() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.showPosition);
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  },
+
+  showPosition: function(position) {
+    console.log("Latitude: " + position.coords.latitude + "\nLongitude: " + position.coords.longitude);
+  },
+
+  sendPost: function() {
+    console.log("test post");
   }
 };
 

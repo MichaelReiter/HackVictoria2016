@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 io.on('connection', function(socket) {
-    console.log("connected");
+  console.log("connected");
 });
 
 app.get('/', function (req, res) {
@@ -26,12 +26,12 @@ app.get('/test_end', function (req, res) {
 });
 
 app.post('/location', function(req, res) {
-    var data = req.body;
-    console.log(data);
-    io.emit('busMetrics', data);
-    res.sendStatus(200);
+  var data = req.body;
+  console.log(data);
+  io.emit('busMetrics', data);
+  res.sendStatus(200);
 });
 
 httpServer.listen(3000, function() {
-    console.log('listening on 3000');
+  console.log('listening on 3000');
 })
