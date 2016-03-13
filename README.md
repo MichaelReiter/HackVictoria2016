@@ -12,6 +12,6 @@ An app that leverages the Google Maps API and crowdsourced transit data to help 
 - JavaScript
 
 ## Team Members
-- Michael Reiter
-- Erik Reppel
-- Clement Emmanuel
+- Michael Reiter: 2nd year Computer Science student with one web development co-op experience (Cordova, JavaScript)
+- Erik Reppel: 2nd year Computer Science student with one web development co-op experience (Node)
+- Clement Emmanuel: 4th year Physics student with two software development co-op experiences (Python/Java)
