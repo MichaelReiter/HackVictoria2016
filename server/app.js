@@ -17,6 +17,7 @@ for (var i = 0; i < pathArr.length - 1; i++) {
   pathStr += pathArr[i] + '\\';
 }
 pathStr = path.join(pathStr, 'app\\www\\');
+console.log(pathStr);
 app.use(express.static(pathStr));
 
 var busList = [
