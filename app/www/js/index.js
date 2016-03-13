@@ -54,7 +54,7 @@ var app = {
 
       var anchor = document.createElement('a');
       anchor.className = 'navigate-right';
-      anchor.onclick = 'sendPost()';
+      anchor.onclick = function() { app.sendPost(); };
       listElement.appendChild(anchor);
 
       var busNameDiv = document.createElement('div');
@@ -79,7 +79,7 @@ var app = {
   },
 
   sendPost: function() {
-    console.log("test post");
+    console.log("sent post");
   }
 };
 
