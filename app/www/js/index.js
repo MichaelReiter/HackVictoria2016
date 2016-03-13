@@ -109,8 +109,8 @@ var app = {
         var text = "4";//event.target.textContent || event.target.innerText;
 
         var geolocation = {};
-        geolocation.lat = position.coords.latitude + Math.random() * 0.01;
-        geolocation.lng = position.coords.longitude + Math.random() * 0.01;
+        geolocation.lat = position.coords.latitude;// + Math.random() * 0.01;
+        geolocation.lng = position.coords.longitude;// + Math.random() * 0.01;
         geolocation.number = text.split(" ")[0];
 
         $.post(serverRoot + "/location", geolocation);
