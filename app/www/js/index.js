@@ -1,4 +1,4 @@
-var serverRoot = "http://localhost:3000";
+var serverRoot = "http://openb.us";
 var socket = io.connect(serverRoot);
 var geolocation = {};
 
