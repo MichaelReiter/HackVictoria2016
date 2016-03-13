@@ -6,22 +6,21 @@ var geolocation = {};
 var busMarkers = [];
 var mapDiv = document.getElementById('map');
 
-setTimeout(function() {initMap();}, 200);
+// setTimeout(function() {initMap();}, 200);
 
-var map = null; 
+var map = null;
 
-function initMap() { 
+function initMap() {
   map = new google.maps.Map(mapDiv, {
     center: {lat: 48.45, lng: -123.35},
     zoom: 12,
     streetViewControl: false,
     mapTypeControl: false
   });
-
 }
 
 socket.on('busInit', function(activeBusList) {
-
+  
 });
 
 function addMarker(id, lat, lng){
@@ -94,7 +93,7 @@ var app = {
     for (var bus in busList) {
       var listElement = document.createElement('li');
       listElement.className = 'table-view-cell';
-      listElement.onclick = function() { app.sendPost(event); };
+      listElement.onclick = function() { app.postLoop(); };
       document.getElementsByClassName('table-view')[0].appendChild(listElement);
       
       var busNumber = document.createTextNode(busList[bus].number + " " + busList[bus].route);
@@ -103,23 +102,37 @@ var app = {
   },
 
   sendPost: function(event) {
+    console.log("POST sent");
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
-        var text = event.target.textContent || event.target.innerText;
+        var text = "4";//event.target.textContent || event.target.innerText;
 
         var geolocation = {};
         geolocation.lat = position.coords.latitude;
         geolocation.lng = position.coords.longitude;
         geolocation.number = text.split(" ")[0];
 
-        $.post(serverRoot + "/location", geolocation)
-          .done(function(data) {
-            alert("Posted: " + data);
-          });
+        $.post(serverRoot + "/location", geolocation);
+
+        // // Remove table
+        // var card = document.getElementsByClassName('card')[0];
+        // card.parentNode.removeChild(card);
+
+        // var map = document.createElement('div');
+        // map.id = 'map';
+        // document.getElementsByClassName('content')[0].appendChild(map);
+        // initMap();
       });
     } else {
       console.log("Geolocation is not supported by this browser.");
     }
+  },
+
+  postLoop: function() {
+    console.log("before set interval");
+    // while (true) {
+    //   setTimeout(app.sendPost(), 1000);
+    // }
   }
 };
 
