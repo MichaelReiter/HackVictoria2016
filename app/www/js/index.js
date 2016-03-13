@@ -61,10 +61,6 @@ var app = {
 
 app.initialize();
 
-$(document).ready(function() {
-  setTimeout(function() {app.initMap();}, 200);
-});
-
 var busList = [
   { number: "1", route: "Downtown/Richardson", hasMetric: false },
   { number: "2/2A", route: "Oak Bay/Willows/Downtown", hasMetric: false },

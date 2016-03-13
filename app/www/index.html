@@ -35,6 +35,9 @@
     <!-- Wrap all non-bar HTML in the .content div -->
     <div class="content">
       <div id="map"></div>
+      <script>
+        setTimeout(function() {app.initMap();}, 200);
+      </script>
     </div>
     <script src="js/socket.io-1.4.5.js"></script>
     <script type="text/javascript" src="js/jquery-2.2.1.min.js"></script>
