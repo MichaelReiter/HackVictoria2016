@@ -1,4 +1,5 @@
-var socket = io.connect('http://localhost:3000');
+var serverRoot = "http://localhost:3000";
+var socket = io.connect(serverRoot);
 
 socket.on('busMetrics', function(data) {
   console.log(data);
@@ -50,11 +51,11 @@ var app = {
     for (var bus in busList) {
       var listElement = document.createElement('li');
       listElement.className = 'table-view-cell';
+      listElement.onclick = function() { app.sendPost(event); };
       document.getElementsByClassName('table-view')[0].appendChild(listElement);
 
       var anchor = document.createElement('a');
       anchor.className = 'navigate-right';
-      anchor.onclick = function() { app.sendPost(); };
       listElement.appendChild(anchor);
 
       var busNameDiv = document.createElement('div');
@@ -78,8 +79,11 @@ var app = {
     console.log("Latitude: " + position.coords.latitude + "\nLongitude: " + position.coords.longitude);
   },
 
-  sendPost: function() {
-    console.log("sent post");
+  sendPost: function(event) {
+    $.post(serverRoot + "/location", { number: event.target.text.split(" ")[0], lat: 1, lng: 1 })
+      .done(function(data) {
+        alert("Posted: " + data);
+      });
   }
 };
 
