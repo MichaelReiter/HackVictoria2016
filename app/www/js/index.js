@@ -53,27 +53,21 @@ var app = {
       listElement.className = 'table-view-cell';
       listElement.onclick = function() { app.sendPost(event); };
       document.getElementsByClassName('table-view')[0].appendChild(listElement);
-
-      var anchor = document.createElement('a');
-      anchor.className = 'navigate-right';
-      listElement.appendChild(anchor);
-
-      var busNameDiv = document.createElement('div');
-      busNameDiv.className = 'bus-text';
-      anchor.appendChild(busNameDiv);
-
+      
       var busNumber = document.createTextNode(busList[bus].number + " " + busList[bus].route);
-      busNameDiv.appendChild(busNumber);
+      listElement.appendChild(busNumber);
     }
   },
 
   sendPost: function(event) {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
+        var text = event.target.textContent || event.target.innerText;
+
         var geolocation = {};
         geolocation.lat = position.coords.latitude;
         geolocation.lng = position.coords.longitude;
-        geolocation.number = event.target.text.split(" ")[0];
+        geolocation.number = text.split(" ")[0];
 
         $.post(serverRoot + "/location", geolocation)
           .done(function(data) {
