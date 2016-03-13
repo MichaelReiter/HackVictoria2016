@@ -11,14 +11,7 @@ var io = socketio(httpServer);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-var pathArr = __dirname.split("\\");
-var pathStr = "";
-for (var i = 0; i < pathArr.length - 1; i++) {
-  pathStr += pathArr[i] + '\\';
-}
-pathStr = path.join(pathStr, 'app\\www\\');
-console.log(pathStr);
-app.use(express.static(pathStr));
+app.use(express.static(path.join(__dirname, '/app/www')));
 
 var busList = [
   { number: "1", route: "Downtown/Richardson", hasMetric: false },
@@ -92,7 +85,7 @@ io.on('connection', function(socket) {
 app.get('/', function(req, res) {
   console.log(pathStr);
   res.sendFile(
-    path.join(pathStr, 'index.html')
+    path.join(__dirname, 'app/www/index.html')
   );
 
 });
