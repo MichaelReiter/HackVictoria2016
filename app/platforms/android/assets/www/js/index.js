@@ -4,13 +4,14 @@ var geolocation = {};
 
 
 var busMarkers = [];
-var mapDiv = document.getElementById('map');
 
 // setTimeout(function() {initMap();}, 200);
 
 var map = null;
 
 function initMap() {
+  console.log("map initialized");
+  var mapDiv = document.getElementById('map');
   map = new google.maps.Map(mapDiv, {
     center: {lat: 48.45, lng: -123.35},
     zoom: 12,
@@ -37,8 +38,8 @@ function updateMarker(marker, lat, lng){
 }
 
 socket.on('updateBus', function(data) {
-  console.log('len of Bus marker List ' + busMarkers.length)
-  console.log('updating bus # ' + data.number );
+  console.log('Len of bus marker list ' + busMarkers.length);
+  console.log('Updating bus #' + data.number );
 
   var id = data.number;
   var lat = data.lat;
@@ -52,7 +53,7 @@ socket.on('updateBus', function(data) {
       updateMarker(marker, lat, lng);
       return;
     }
-  };
+  }
 
   addMarker(id, lat, lng);
 });
@@ -108,9 +109,10 @@ var app = {
         var text = "4";//event.target.textContent || event.target.innerText;
 
         var geolocation = {};
-        geolocation.lat = position.coords.latitude;
-        geolocation.lng = position.coords.longitude;
+        geolocation.lat = position.coords.latitude;// + Math.random() * 0.01;
+        geolocation.lng = position.coords.longitude;// + Math.random() * 0.01;
         geolocation.number = text.split(" ")[0];
+        alert(geolocation.lat);
 
         $.post(serverRoot + "/location", geolocation);
 
@@ -129,10 +131,7 @@ var app = {
   },
 
   postLoop: function() {
-    console.log("before set interval");
-    while (true) {
-      setTimeout(app.sendPost(), 1000);
-    }
+    setInterval(app.sendPost, 500000);
   }
 };
 
