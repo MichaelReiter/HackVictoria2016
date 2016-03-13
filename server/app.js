@@ -99,5 +99,5 @@ app.post('/location', function(req, res) {
 });
 
 httpServer.listen(3000, function() {
-    console.log('listening on 3000');
+  console.log('listening on 3000');
 })
