@@ -11,6 +11,14 @@ var io = socketio(httpServer);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+var pathArr = __dirname.split("\\");
+var pathStr = "";
+for (var i = 0; i < pathArr.length - 1; i++) {
+  pathStr += pathArr[i] + '\\';
+}
+pathStr = path.join(pathStr, 'app\\www\\');
+app.use(express.static(pathStr));
+
 var busList = [
   { number: "1", route: "Downtown/Richardson", hasMetric: false },
   { number: "2/2A", route: "Oak Bay/Willows/Downtown", hasMetric: false },
@@ -65,37 +73,44 @@ var busList = [
   // { number: "-1", route: "Narnia/Westeros", hasMetric: true, lat: 48.45, lng: -123.35  },
   // { number: "-2", route: "Narnia/Westeros", hasMetric: true, lat: 48.4716147, lng: -123.3346729  }
 
-]
+];
 
 //48.4715862,-123.3346515
 
 io.on('connection', function(socket) {
-    console.log("connected");
-    activeBusList = [];
-    for (var i = 0; i < busList.length; i++) {
-        if (busList[i].hasMetric) {
-            activeBusList.push(busList[i]);
-        }
-    };
-
-    io.emit('busInit', activeBusList);
+  console.log("connected");
+  activeBusList = [];
+  for (var i = 0; i < busList.length; i++) {
+    if (busList[i].hasMetric) {
+      activeBusList.push(busList[i]);
+    }
+  }
+  io.emit('busInit', activeBusList);
 });
 
-app.get('/', function (req, res) {
+app.get('/', function(req, res) {
+  var pathArr = __dirname.split("\\");
+  var pathStr = "";
+  console.log(pathArr)
+  for (var i = 0; i < pathArr.length - 1; i++) {
+    pathStr += pathArr[i] + '\\';
+  }
+  console.log(pathStr);
   res.sendFile(
-    path.join(__dirname, 'static/index.html')
+    path.join(pathStr, 'app\\www\\index.html')
   );
+
 });
 
-app.get('/test_end', function (req, res) {
+app.get('/test_end', function(req, res) {
   res.send('test!');
 });
 
 app.post('/location', function(req, res) {
-    var data = req.body;
-    console.log(data);
-    io.emit('updateBus', data);
-    res.sendStatus(200);
+  var data = req.body;
+  console.log(data);
+  io.emit('updateBus', data);
+  res.sendStatus(200);
 });
 
 httpServer.listen(3000, function() {
