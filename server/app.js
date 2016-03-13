@@ -89,15 +89,9 @@ io.on('connection', function(socket) {
 });
 
 app.get('/', function(req, res) {
-  var pathArr = __dirname.split("\\");
-  var pathStr = "";
-  console.log(pathArr)
-  for (var i = 0; i < pathArr.length - 1; i++) {
-    pathStr += pathArr[i] + '\\';
-  }
-  console.log(pathStr);
+  
   res.sendFile(
-    path.join(pathStr, 'app\\www\\index.html')
+    path.join(pathStr, 'index.html')
   );
 
 });
